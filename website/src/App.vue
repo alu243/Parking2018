@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app value="abc" width="200">
+		<v-navigation-drawer persistent :clipped="clipped" v-model="drawer" fixed hide-overlay="false" app width="200">
 			<v-list>
 				<v-list-group v-for="(item, i) in menus" :key="i" :prepend-icon="item.icon" no-action>
 					<v-list-tile slot="activator">
@@ -24,31 +24,58 @@
 			<v-btn icon @click.stop="miniVariant = !miniVariant">
 				<v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
 			</v-btn>
-			<!-- <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn> -->
+			<v-btn icon @click.stop="clipped = !clipped">
+				<v-icon>web</v-icon>
+			</v-btn>
 			<!-- <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn> -->
 			<v-toolbar-title v-text="title"></v-toolbar-title>
 			<v-spacer></v-spacer>
-			<v-btn icon @click.stop="rightDrawer = !rightDrawer">
-				<v-icon>menu</v-icon>
+			<!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer"> -->
+			<v-btn icon @click.stop="dialog = !dialog">
+				<v-icon>account_circle</v-icon>
 			</v-btn>
 		</v-toolbar>
 		<v-content>
 			<HelloWorld/>
 		</v-content>
-		<v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
-			<v-list>
-				<v-list-tile @click="right = !right">
-					<v-list-tile-action>
-						<v-icon>compare_arrows</v-icon>
-					</v-list-tile-action>
-					<v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-				</v-list-tile>
-			</v-list>
-		</v-navigation-drawer>
+
+		<v-dialog v-model="dialog" width="400">
+			<!-- <v-container style="position: relative;top: 5%;" class="text-xs-center"> -->
+			<v-layout row class="text-xs-center">
+				<v-flex xs4 style="background-image: url('https://cdn.wallpapersafari.com/7/86/gqiGH7.jpg')">
+				</v-flex>
+				<v-flex xs8>
+					<v-card flat>
+						<v-card-title primary-title>
+							<h4>登入</h4>
+						</v-card-title>
+						<v-form>
+							<v-text-field prepend-icon="person" name="Username" label="帳號"></v-text-field>
+							<v-text-field prepend-icon="lock" name="Password" label="密碼" type="password"></v-text-field>
+							<v-card-actions>
+								<v-btn primary large block @click.stop="dialog = false">登 入
+									<v-icon>input</v-icon>
+								</v-btn>
+							</v-card-actions>
+						</v-form>
+					</v-card>
+					<!-- </v-container> -->
+				</v-flex>
+			</v-layout>
+		</v-dialog>
+
+		<!-- <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
+      <v-list>
+        <v-list-tile @click="right = !right">
+          <v-list-tile-action>
+            <v-icon>compare_arrows</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer> -->
 		<v-footer :fixed="fixed" app>
 			<span>&copy; 2018</span>
 		</v-footer>
@@ -56,7 +83,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import HelloWorld from './components/HelloWorld'
 
 export default {
 	name: 'App',
@@ -121,8 +148,9 @@ export default {
 			miniVariant: false,
 			right: true,
 			rightDrawer: false,
-			title: '停管資訊系統'
-		};
+			title: '停管資訊系統',
+			dialog: false
+		}
 	}
-};
+}
 </script>
