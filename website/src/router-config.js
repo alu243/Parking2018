@@ -1,6 +1,6 @@
 import Home from './components/Home';
 
-export const routes = [{
+export const routers = [{
     path: '/',
     components: Home,
     children: [],

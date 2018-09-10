@@ -38,7 +38,10 @@
 			</v-btn>
 		</v-toolbar>
 		<v-content>
-			<HelloWorld/>
+
+			<router-view class="view"></router-view>
+			
+			<!-- <HelloWorld/> -->
 		</v-content>
 
 		<v-dialog v-model="dialog" width="400">
