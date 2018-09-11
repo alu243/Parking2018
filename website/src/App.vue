@@ -30,7 +30,9 @@
 			<!-- <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn> -->
-			<v-toolbar-title v-text="title"></v-toolbar-title>
+			<v-toolbar-title >{{title}}
+			<!-- <v-btn flat to="/" exact>{{title}}</v-btn> -->
+			</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer"> -->
 			<v-btn icon @click.stop="dialog = !dialog">
@@ -86,12 +88,11 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 
 export default {
 	name: 'App',
 	components: {
-		HelloWorld
+		//HelloWorld
 	},
 	data() {
 		return {

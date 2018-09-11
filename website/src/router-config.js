@@ -1,7 +1,11 @@
 import Home from './components/Home';
+import HelloWorld from './components/HelloWorld';
 
-export const routers = [{
+export const routes = [{
     path: '/',
-    components: Home,
+    component: Home,
     children: [],
+}, {
+    path: '/HelloWorld',
+    component: HelloWorld
 }];
