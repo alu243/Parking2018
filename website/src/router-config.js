@@ -1,5 +1,6 @@
 import Home from './components/Home';
 import HelloWorld from './components/HelloWorld';
+import MapSearch from './components/MapSearch';
 
 export const routes = [{
     path: '/',
@@ -8,4 +9,7 @@ export const routes = [{
 }, {
     path: '/HelloWorld',
     component: HelloWorld
+}, {
+    path: '/MapSearch',
+    component: MapSearch
 }];

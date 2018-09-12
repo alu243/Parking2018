@@ -8,7 +8,7 @@
 							<v-list-tile-title v-text="item.title"></v-list-tile-title>
 						</v-list-tile-content>
 					</v-list-tile>
-					<v-list-tile value="true" v-for="(subitem, j) in item.items" :key="j">
+					<v-list-tile value="true" v-for="(subitem, j) in item.items" :key="j" :to="{path: subitem.path}">
 						<!-- <v-list-tile-action>
 							<v-icon v-html="subitem.icon"></v-icon>
 						</v-list-tile-action> -->
@@ -40,8 +40,10 @@
 			</v-btn>
 		</v-toolbar>
 		<v-content>
-
-			<router-view class="view"></router-view>
+      <v-fade-transition mode="out-in">
+        <router-view></router-view>
+      </v-fade-transition>
+			<!-- <router-view class="view"></router-view> -->
 			
 			<!-- <HelloWorld/> -->
 		</v-content>
@@ -104,9 +106,9 @@ export default {
 					icon: 'image_search',
 					title: '基本查詢',
 					items: [
-						{ icon: '', title: '停車紀錄查詢' },
-						{ icon: '', title: '人員開單查詢' },
-						{ icon: '', title: '其他既有資料查詢' }
+						{ icon: '', title: '停車紀錄查詢', path:'/MapSearch' },
+						{ icon: '', title: '人員開單查詢', path:'/HelloWorld' },
+						{ icon: '', title: '其他既有資料查詢', path:'/' }
 					]
 				},
 				{
