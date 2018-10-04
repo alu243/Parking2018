@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<v-navigation-drawer persistent :clipped="clipped" v-model="drawer" fixed hide-overlay="false" app width="200">
+		<v-navigation-drawer persistent :clipped="clipped" v-model="drawer" fixed :hide-overlay="true" app width="280">
 			<v-list>
 				<v-list-group v-for="(item, i) in menus" :key="i" :prepend-icon="item.icon" no-action>
 					<v-list-tile slot="activator">
@@ -30,8 +30,8 @@
 			<!-- <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn> -->
-			<v-toolbar-title >{{title}}
-			<!-- <v-btn flat to="/" exact>{{title}}</v-btn> -->
+			<v-toolbar-title>{{title}} {{$route.meta.title ? "-" : ""}} {{$route.meta.title}}
+				<!-- <v-btn flat to="/" exact>{{title}}</v-btn> -->
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer"> -->
@@ -40,37 +40,16 @@
 			</v-btn>
 		</v-toolbar>
 		<v-content>
-      <v-fade-transition mode="out-in">
-        <router-view></router-view>
-      </v-fade-transition>
-			<!-- <router-view class="view"></router-view> -->
-			
+			<!-- <br />GG-{{$route.matched[0].props.default.subTitle}} -->
+			<v-fade-transition mode="out-in">
+				<router-view class="view"></router-view>
+			</v-fade-transition>
 			<!-- <HelloWorld/> -->
 		</v-content>
 
-		<v-dialog v-model="dialog" width="400">
+		<v-dialog v-model="dialog" width="400" style="z-index:1100;">
 			<!-- <v-container style="position: relative;top: 5%;" class="text-xs-center"> -->
-			<v-layout row class="text-xs-center">
-				<v-flex xs4 style="background-image: url('https://cdn.wallpapersafari.com/7/86/gqiGH7.jpg')">
-				</v-flex>
-				<v-flex xs8>
-					<v-card flat>
-						<v-card-title primary-title>
-							<h4>登入</h4>
-						</v-card-title>
-						<v-form>
-							<v-text-field prepend-icon="person" name="Username" label="帳號"></v-text-field>
-							<v-text-field prepend-icon="lock" name="Password" label="密碼" type="password"></v-text-field>
-							<v-card-actions>
-								<v-btn primary large block @click.stop="dialog = false">登 入
-									<v-icon>input</v-icon>
-								</v-btn>
-							</v-card-actions>
-						</v-form>
-					</v-card>
-					<!-- </v-container> -->
-				</v-flex>
-			</v-layout>
+			<login></login>
 		</v-dialog>
 
 		<!-- <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
@@ -84,17 +63,18 @@
       </v-list>
     </v-navigation-drawer> -->
 		<v-footer :fixed="fixed" app>
-			<span>&copy; 2018</span>
+			<span>&copy; 2019</span>
 		</v-footer>
 	</v-app>
 </template>
 
 <script>
+import Login from './components/Login'
 
 export default {
 	name: 'App',
 	components: {
-		//HelloWorld
+		Login
 	},
 	data() {
 		return {
@@ -103,58 +83,68 @@ export default {
 			fixed: false,
 			menus: [
 				{
-					icon: 'image_search',
-					title: '基本查詢',
+					icon: 'find_in_page',
+					title: '資料分析統計',
 					items: [
-						{ icon: '', title: '停車紀錄查詢', path:'/MapSearch' },
-						{ icon: '', title: '人員開單查詢', path:'/HelloWorld' },
-						{ icon: '', title: '其他既有資料查詢', path:'/' }
-					]
-				},
-				{
-					icon: 'library_books',
-					title: '報表分析',
-					items: [
-						{ icon: '', title: '開單統計' },
-						{ icon: '', title: '停車格周轉率' },
-						{ icon: '', title: '開單間隔排行' },
-						{ icon: '', title: '開單績效轉薪資' }
+						{ icon: '', title: '車號停車資料查詢', path: '/MapSearch' },
+						{ icon: '', title: '開單紀錄明細資料', path: '/BillSearch' },
+						{ icon: '', title: '開單人員開單統計表', path: '/' },
+						{ icon: '', title: '開單人員開單間距排行表', path: '/' },
+						{ icon: '', title: '各路段車位開單資料統計', path: '/' },
+						{ icon: '', title: '各路段開單比較表', path: '/' },
+						{ icon: '', title: '各時段開單比較表', path: '/' },
+						{ icon: '', title: '每日開單自動查勤表', path: '/' }
 					]
 				},
 				{
 					icon: 'phonelink_setup',
-					title: '資產管理',
+					title: '設備耗材管理',
 					items: [
-						{ icon: '', title: '設備管理' },
-						{ icon: '', title: '耗材管理' },
-						{ icon: '', title: '其他資產' },
-						{ icon: '', title: '人員管理' }
+						{ icon: '', title: 'PDA領機管理' },
+						{ icon: '', title: 'PDA還機管理' },
+						{ icon: '', title: 'PDA異常還機管理' },
+						{ icon: '', title: '設備清冊管理' },
+						{ icon: '', title: '設備保養管理' },
+						{ icon: '', title: '設備維修管理' },
+						{ icon: '', title: '耗材庫存管理' }
 					]
 				},
 				{
-					icon: 'schedule',
-					title: '排程',
+					icon: 'cloud',
+					title: '資料傳送管理',
 					items: [
-						{ icon: '', title: '下載交通局資料' },
-						{ icon: '', title: '上傳交通局資料' },
-						{ icon: '', title: '下載google相片' },
-						{ icon: '', title: '刪除相片' }
+						{ icon: 'cloud_download', title: '雲端資料下載作業' },
+						{ icon: '', title: '開單資料上傳作業' },
+						{ icon: '', title: '相關資料下載作業' },
+						{ icon: '', title: 'PDA異常資料匯入作業' }
 					]
 				},
 				{
-					icon: 'map',
-					title: 'GIS分析',
+					icon: 'place',
+					title: '圖控介面追蹤管理',
 					items: [
-						{ icon: '', title: '停車空格GIS查詢' },
-						{ icon: '', title: '人員開單軌跡' },
-						{ icon: '', title: '違規、贓車通報' }
+						{ icon: '', title: '開單人員現有位置追蹤' },
+						{ icon: '', title: '開單人員巡場路線追蹤' },
+						{ icon: '', title: '路段車位停車現況' },
+						{ icon: '', title: '贓車通報位置警示' },
+						{ icon: '', title: '高欠費車通報位置警示' }
+					]
+				},
+				{
+					icon: 'how_to_reg',
+					title: '人事差勤管理',
+					items: [
+						{ icon: '', title: '開車人員資料管理' },
+						{ icon: '', title: '開車人員排班管理' },
+						{ icon: '', title: '薪資獎金設定管理' },
+						{ icon: '', title: '績效結算薪資作業' }
 					]
 				}
 			],
 			miniVariant: false,
 			right: true,
 			rightDrawer: false,
-			title: '停管資訊系統',
+			title: '停車開單資訊系統',
 			dialog: false
 		}
 	}

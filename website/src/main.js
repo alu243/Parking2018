@@ -5,17 +5,21 @@ import Vuex from 'vuex';
 import Router from 'vue-router';
 //import { sync } from 'vuex-router-sync';
 import './plugins/vuetify';
+import DatetimePicker from 'vuetify-datetime-picker';
+import 'vuetify-datetime-picker/src/stylus/main.styl';
 
 // vue app components
 import App from './App.vue';
 //import VuexStore from './vuex/store';
-import { routes } from './router-config';
+import {
+    routes
+} from './router-config';
 import 'leaflet/dist/leaflet.css';
 
 //import L from 'vue2-leaflet';
-
 Vue.use(Vuex);
 Vue.use(Router);
+Vue.use(DatetimePicker)
 
 //const store = new Vuex.Store(VuexStore); 
 Vue.config.productionTip = false
