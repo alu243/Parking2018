@@ -31,13 +31,12 @@ const router = new Router({
 //sync(store, router);
 
 /* leaflet icon */
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
+delete L.Icon.Default.prototype._getIconUrl; // eslint-disable-line no-undef
+L.Icon.Default.mergeOptions({ // eslint-disable-line no-undef
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
-
 new Vue({
     router,
     //store,

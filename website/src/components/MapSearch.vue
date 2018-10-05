@@ -26,11 +26,11 @@ export default {
 	data() {
 		return {
 			zoom: 17,
-			center: L.latLng(22.627278, 120.301435),
+			center: L.latLng(22.627278, 120.301435), // eslint-disable-line no-undef
 			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
 			attribution:
 				'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-			marker: L.latLng(22.627278, 120.301435),
+			marker: L.latLng(22.627278, 120.301435), // eslint-disable-line no-undef
 			text: 'this is a markerrrr'
 		}
 	}
