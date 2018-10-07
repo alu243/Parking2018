@@ -1,71 +1,31 @@
-<template>
-	<v-app>
-		<v-navigation-drawer persistent :clipped="clipped" v-model="drawer" fixed :hide-overlay="true" app width="280">
-			<v-list>
-				<v-list-group v-for="(item, i) in menus" :key="i" :prepend-icon="item.icon" no-action>
-					<v-list-tile slot="activator">
-						<v-list-tile-content>
-							<v-list-tile-title v-text="item.title"></v-list-tile-title>
-						</v-list-tile-content>
-					</v-list-tile>
-					<v-list-tile value="true" v-for="(subitem, j) in item.items" :key="j" :to="{path: subitem.path}">
-						<!-- <v-list-tile-action>
-							<v-icon v-html="subitem.icon"></v-icon>
-						</v-list-tile-action> -->
-						<v-list-tile-content>
-							<v-list-tile-title v-text="subitem.title"></v-list-tile-title>
-						</v-list-tile-content>
-					</v-list-tile>
-				</v-list-group>
-			</v-list>
-		</v-navigation-drawer>
-		<v-toolbar app :clipped-left="clipped">
-			<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-			<v-btn icon @click.stop="miniVariant = !miniVariant">
-				<v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-			</v-btn>
-			<v-btn icon @click.stop="clipped = !clipped">
-				<v-icon>web</v-icon>
-			</v-btn>
-			<!-- <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn> -->
-			<v-toolbar-title>{{title}} {{$route.meta.title ? "-" : ""}} {{$route.meta.title}}
-				<!-- <v-btn flat to="/" exact>{{title}}</v-btn> -->
-			</v-toolbar-title>
-			<v-spacer></v-spacer>
-			<!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer"> -->
-			<v-btn icon @click.stop="dialog = !dialog">
-				<v-icon>account_circle</v-icon>
-			</v-btn>
-		</v-toolbar>
-		<v-content>
-			<!-- <br />GG-{{$route.matched[0].props.default.subTitle}} -->
-			<v-fade-transition mode="out-in">
-				<router-view class="view"></router-view>
-			</v-fade-transition>
-			<!-- <HelloWorld/> -->
-		</v-content>
-
-		<v-dialog v-model="dialog" width="400" style="z-index:1100;">
-			<!-- <v-container style="position: relative;top: 5%;" class="text-xs-center"> -->
-			<login></login>
-		</v-dialog>
-
-		<!-- <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer> -->
-		<v-footer :fixed="fixed" app>
-			<span>&copy; 2019</span>
-		</v-footer>
-	</v-app>
+<template lang="pug">
+v-app
+	v-navigation-drawer(persistent :clipped="clipped" :mini-variant="miniVariant" v-model="drawer" fixed :hide-overlay="true" app width="280")
+		v-list
+			v-list-group(v-for="(item, i) in menus" :key="i" :prepend-icon="item.icon" no-action)
+				v-list-tile(slot="activator")
+					v-list-tile-content
+						v-list-tile-title(v-text="item.title")
+				v-list-tile(value="true" v-for="(subitem, j) in item.items" :key="j" :to="{path: subitem.path}")
+					v-list-tile-content
+						v-list-tile-title(v-text="subitem.title")
+	v-toolbar(app :clipped-left="clipped")
+		v-toolbar-side-icon(@click.stop="drawer = !drawer")
+		v-btn(icon @click.stop="miniVariant = !miniVariant")
+			v-icon(v-html="miniVariant ? 'chevron_right' : 'chevron_left'")
+		//- v-btn(icon @click.stop="clipped = !clipped")
+		//- 	v-icon web
+		v-toolbar-title {{title}} {{$route.meta.title ? "-" : ""}} {{$route.meta.title}}
+		v-spacer
+		v-btn(icon @click.stop="dialog = !dialog")
+			v-icon account_circle
+	v-content
+		v-fade-transition(mode="out-in")
+			router-view(class="view")
+	v-dialog(v-model="dialog" width="400" style="z-index:1100;")
+		login
+	v-footer(:fixed="fixed" app)
+		span &copy; 2019
 </template>
 
 <script>
@@ -144,7 +104,7 @@ export default {
 			miniVariant: false,
 			right: true,
 			rightDrawer: false,
-			title: '停車開單資訊系統',
+			title: '停車開單管理系統',
 			dialog: false
 		}
 	}

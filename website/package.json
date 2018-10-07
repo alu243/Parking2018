@@ -3,15 +3,19 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "serve": "start http://localhost:8080 & vue-cli-service serve",
+        "serve": "vue-cli-service serve --open http://localhost:8080",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
+        "axios": "^0.18.0",
+        "axios-mock-adapter": "^1.15.0",
+        "crip-vue-loading": "^1.2.5",
         "pug-plain-loader": "^1.0.0",
         "stylus": "^0.54.5",
         "stylus-loader": "^3.0.2",
         "vue": "^2.5.17",
+        "vue-axios": "^2.1.4",
         "vue-router": "^3.0.1",
         "vue2-leaflet": "^1.0.2",
         "vuetify": "^1.0.19",
