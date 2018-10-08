@@ -52,7 +52,7 @@ export default {
 						{ icon: '', title: '開單人員開單間距排行表', path: '/' },
 						{ icon: '', title: '各路段車位開單資料統計', path: '/' },
 						{ icon: '', title: '各路段開單比較表', path: '/' },
-						{ icon: '', title: '各時段開單比較表', path: '/' },
+						{ icon: '', title: '各時段開單比較表', path: '/HourStatChart' },
 						{ icon: '', title: '每日開單自動查勤表', path: '/' }
 					]
 				},

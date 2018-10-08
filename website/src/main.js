@@ -9,6 +9,7 @@ import CripLoading from "crip-vue-loading";
 //import { sync } from 'vuex-router-sync';
 import './plugins/vuetify';
 import './mockdata';
+//import ECharts from 'vue-echarts/components/ECharts'
 
 import DatetimePicker from 'vuetify-datetime-picker';
 import 'vuetify-datetime-picker/src/stylus/main.styl';

@@ -1,6 +1,7 @@
-import Home from './components/Home';
-import BillSearch from './components/BillSearch';
-import MapSearch from './components/MapSearch';
+import Home from './pages/Home';
+import BillSearch from './pages/BillSearch';
+import MapSearch from './pages/MapSearch';
+import HourStatChart from './pages/HourStatChart';
 
 export const routes = [{
     path: '/',
@@ -21,4 +22,10 @@ export const routes = [{
         title: '車號停車資料查詢'
     },
     component: MapSearch
+}, {
+    path: '/HourStatChart',
+    meta: {
+        title: '各時段開單比較表'
+    },
+    component: HourStatChart
 }]
