@@ -1,6 +1,11 @@
 <template lang="pug">
 v-app
-	v-navigation-drawer(persistent :clipped="clipped" :mini-variant="miniVariant" v-model="drawer" fixed :hide-overlay="true" app width="280")
+	v-navigation-drawer(persistent fixed app :mini-variant="miniVariant" v-model="drawer" width="280")
+		v-toolbar(flat)
+			v-list
+				v-list-tile
+					v-list-tile-title(class="title") {{title}}
+		v-divider
 		v-list
 			v-list-group(v-for="(item, i) in menus" :key="i" :prepend-icon="item.icon" no-action)
 				v-list-tile(slot="activator")
@@ -9,13 +14,13 @@ v-app
 				v-list-tile(value="true" v-for="(subitem, j) in item.items" :key="j" :to="{path: subitem.path}")
 					v-list-tile-content
 						v-list-tile-title(v-text="subitem.title")
-	v-toolbar(app :clipped-left="clipped")
+	v-toolbar(app)
 		v-toolbar-side-icon(@click.stop="drawer = !drawer")
-		v-btn(icon @click.stop="miniVariant = !miniVariant")
+		//- v-btn(icon @click.stop="miniVariant = !miniVariant")
 			v-icon(v-html="miniVariant ? 'chevron_right' : 'chevron_left'")
 		//- v-btn(icon @click.stop="clipped = !clipped")
 		//- 	v-icon web
-		v-toolbar-title {{title}} {{$route.meta.title ? "-" : ""}} {{$route.meta.title}}
+		v-toolbar-title {{$route.meta.title ? "" : "首頁"}} {{$route.meta.title}}
 		v-spacer
 		v-btn(icon @click.stop="dialog = !dialog")
 			v-icon account_circle
@@ -29,12 +34,12 @@ v-app
 </template>
 
 <script>
-import Login from './components/Login'
+import Login from './components/Login';
 
 export default {
 	name: 'App',
 	components: {
-		Login
+		Login,
 	},
 	data() {
 		return {
@@ -53,8 +58,8 @@ export default {
 						{ icon: '', title: '各路段車位開單資料統計', path: '/' },
 						{ icon: '', title: '各路段開單比較表', path: '/' },
 						{ icon: '', title: '各時段開單比較表', path: '/HourStatChart' },
-						{ icon: '', title: '每日開單自動查勤表', path: '/' }
-					]
+						{ icon: '', title: '每日開單自動查勤表', path: '/' },
+					],
 				},
 				{
 					icon: 'phonelink_setup',
@@ -66,8 +71,8 @@ export default {
 						{ icon: '', title: '設備清冊管理' },
 						{ icon: '', title: '設備保養管理' },
 						{ icon: '', title: '設備維修管理' },
-						{ icon: '', title: '耗材庫存管理' }
-					]
+						{ icon: '', title: '耗材庫存管理' },
+					],
 				},
 				{
 					icon: 'cloud',
@@ -76,8 +81,8 @@ export default {
 						{ icon: 'cloud_download', title: '雲端資料下載作業' },
 						{ icon: '', title: '開單資料上傳作業' },
 						{ icon: '', title: '相關資料下載作業' },
-						{ icon: '', title: 'PDA異常資料匯入作業' }
-					]
+						{ icon: '', title: 'PDA異常資料匯入作業' },
+					],
 				},
 				{
 					icon: 'place',
@@ -87,8 +92,8 @@ export default {
 						{ icon: '', title: '開單人員巡場路線追蹤' },
 						{ icon: '', title: '路段車位停車現況' },
 						{ icon: '', title: '贓車通報位置警示' },
-						{ icon: '', title: '高欠費車通報位置警示' }
-					]
+						{ icon: '', title: '高欠費車通報位置警示' },
+					],
 				},
 				{
 					icon: 'how_to_reg',
@@ -97,16 +102,16 @@ export default {
 						{ icon: '', title: '開車人員資料管理' },
 						{ icon: '', title: '開車人員排班管理' },
 						{ icon: '', title: '薪資獎金設定管理' },
-						{ icon: '', title: '績效結算薪資作業' }
-					]
-				}
+						{ icon: '', title: '績效結算薪資作業' },
+					],
+				},
 			],
 			miniVariant: false,
 			right: true,
 			rightDrawer: false,
 			title: '停車開單管理系統',
-			dialog: false
-		}
-	}
-}
+			dialog: false,
+		};
+	},
+};
 </script>

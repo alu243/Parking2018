@@ -4,41 +4,22 @@ v-form(ref="form" v-model="valid" lazy-validation)
 		v-layout(row wrap)
 			v-flex(xs3)
 				v-autocomplete(v-model="userId" :items="roads" label="開車路段" prepend-icon="directions")
+			v-flex(xs3)
+				v-autocomplete(v-model="userId" :items="types" label="統計種類" prepend-icon="receipt")
+			v-flex(xs6)
+				v-btn( :disabled="!valid" @click="findBillDetails")
+					v-icon search
+					| 查詢
+				v-btn( @click="clear")
+					v-icon clear
+					| 清除
 			v-flex(xs12)
 				v-widget(title="時段營業額" content-bg="white")
 					div(slot="widget-content")
-						v-chart(:options="sample" style="height:450px;width:70%")
+						v-chart(:options="sample" style="height:428px;width:70%")
 </template>
 
 <script>
-//- v-chart(:path-option=`[
-//- 	['dataset.source', hourStat],
-//- 	['xAxis.show', true],
-//- 	['yAxis.show', true],
-//- 	['grid.left', '2%'],
-//-   ['grid.bottom', '5%'],
-//-   ['grid.right', '3%'],
-//- 	['series[0].type', 'bar']
-//- 	['series[0].areaStyle', {}],
-//-   ['series[0].smooth', true],
-//- 	]` height="400px" width="100%")
-
-//- e-chart(:path-option="[
-//-           ['dataset.source', hourStat],
-//-           ['color', [color.lightBlue.base, color.green.lighten1]],
-//-           ['legend.show', true],
-//-           ['xAxis.axisLabel.show', true],
-//-           ['yAxis.axisLabel.show', true],
-//-           ['grid.left', '2%'],
-//-           ['grid.bottom', '5%'],
-//-           ['grid.right', '3%'],
-//-           ['series[0].type', 'bar'],
-//-           ['series[0].areaStyle', {}],
-//-           ['series[0].smooth', true],
-//-           ['series[1].smooth', true],
-//-           ['series[1].type', 'bar'],
-//-           ['series[1].areaStyle', {}],
-//-         ]" height="400px" width="100%")
 import VWidget from '@/components/VWidget'
 import ECharts from 'vue-echarts/components/ECharts'
 import 'echarts/lib/chart/bar'
@@ -63,14 +44,15 @@ export default {
 				'七賢一路',
 				'七賢二路'
 			],
+			types: ['時段營業額', '周間營業額'],
 			sample: {
 				legend: {},
 				tooltip: {},
-				color: ['#ADE'],
+				color: ['#7AB'],
 				dataset: {
 					source: [
-						['Product', '五福二路'],
-						['1', 0],
+						['Time', '五福二路'], // 0=x軸名字，1...n=group
+						['1', 0], // 0=x軸，1...n=group 的 y軸
 						['2', 0],
 						['3', 0],
 						['4', 0],

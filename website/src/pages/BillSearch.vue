@@ -32,19 +32,19 @@ v-form(ref="form" v-model="valid" lazy-validation)
                 v-layout
                   v-flex(xs1)
                     div {{i}}
-                  v-flex(xs3)
+                  v-flex(xs6 md3)
                     span(class="grey--text text--darken-3") 車號 <br>
                     h1 {{item.CarNo}} <br>
                     span(class="grey--text text--darken-3") 停車日期 <br>
                     h2 {{item.StartDate}}
                     span(class="grey--text text--darken-3") 停車期間 <br>
                     h2 {{item.StartTime}}
-                  v-flex(xs3)
+                  v-flex(xs5 md3)
                     span(class="grey--text text--darken-3") 開單人員 <br>
                     h2 {{item.Employee}}
                     span(class="grey--text text--darken-3") 開單車格 <br>
                     h2 {{item.Road}}
-                  v-flex(xs3)
+                  v-flex(xs12 md3)
                     v-img(:src="item.Img" height="168px" position="center center" contain style="border:1")
 </template>
         <!-- <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
@@ -55,7 +55,7 @@ v-form(ref="form" v-model="valid" lazy-validation)
 export default {
 	name: 'BillSearch',
 	props: {
-		msg: String
+		msg: String,
 	},
 	data() {
 		return {
@@ -66,25 +66,25 @@ export default {
 			startDate: null,
 			endDate: null,
 			bills: [],
-			condition: {}
-		}
+			condition: {},
+		};
 	},
 	methods: {
 		clear() {
-			this.condition = {}
-			this.bills = []
+			this.condition = {};
+			this.bills = [];
 		},
 		findBillDetails() {
 			this.$http.post('/billdetail', this.condition).then(
-				response => {
-					this.bills = response.data
+				(response) => {
+					this.bills = response.data;
 				},
-				error => {
-					alert('error')
-					alert(error)
-				}
-			)
-		}
-	}
-}
+				(error) => {
+					alert('error');
+					alert(error);
+				},
+			);
+		},
+	},
+};
 </script>

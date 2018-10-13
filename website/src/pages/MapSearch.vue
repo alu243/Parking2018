@@ -20,7 +20,7 @@ export default {
 	},
 	data() {
 		return {
-			name: null
+			name: null,
 			nameRules: [],
 			zoom: 17,
 			center: L.latLng(22.627278, 120.301435), // eslint-disable-line no-undef
