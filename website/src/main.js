@@ -21,9 +21,9 @@ import App from './App.vue';
 import {
     routes
 } from './router-config';
+import 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
-//import L from 'vue2-leaflet';
+import 'leaflet.icon.glyph';
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 Vue.use(Router);
@@ -33,6 +33,7 @@ Vue.use(CripLoading, {
     axios
 })
 
+const L = window['L'];
 //const store = new Vuex.Store(VuexStore); 
 Vue.config.productionTip = false
 
@@ -43,8 +44,8 @@ const router = new Router({
 //sync(store, router);
 
 /* leaflet icon */
-delete L.Icon.Default.prototype._getIconUrl; // eslint-disable-line no-undef
-L.Icon.Default.mergeOptions({ // eslint-disable-line no-undef
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png'),

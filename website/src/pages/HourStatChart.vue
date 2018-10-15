@@ -20,30 +20,23 @@ v-form(ref="form" v-model="valid" lazy-validation)
 </template>
 
 <script>
-import VWidget from '@/components/VWidget'
-import ECharts from 'vue-echarts/components/ECharts'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/component/polar'
-import 'echarts/lib/component/tooltip'
+import VWidget from '@/components/VWidget';
+import ECharts from 'vue-echarts/components/ECharts';
+import 'echarts/lib/chart/bar';
+import 'echarts/lib/chart/line';
+import 'echarts/lib/component/polar';
+import 'echarts/lib/component/tooltip';
 export default {
 	name: 'HourStatChart',
 	components: { VWidget, 'v-chart': ECharts },
 	props: {
-		msg: String
+		msg: String,
 	},
 	data() {
 		return {
 			userId: null,
 			valid: false,
-			roads: [
-				'五福一路北側',
-				'五福二路',
-				'六合路',
-				'六合一路',
-				'七賢一路',
-				'七賢二路'
-			],
+			roads: ['五福一路北側', '五福二路', '六合路', '六合一路', '七賢一路', '七賢二路'],
 			types: ['時段營業額', '周間營業額'],
 			sample: {
 				legend: {},
@@ -74,19 +67,19 @@ export default {
 						['20', 34741],
 						['21', 78731],
 						['22', 11871],
-						['23', 28182]
-					]
+						['23', 28182],
+					],
 				},
 				xAxis: { type: 'category' },
 				yAxis: {},
-				series: [{ type: 'bar' }]
+				series: [{ type: 'bar' }],
 			},
 			carNo: null,
 			startDate: null,
 			endDate: null,
 			bills: [],
-			condition: {}
-		}
-	}
-}
+			condition: {},
+		};
+	},
+};
 </script>

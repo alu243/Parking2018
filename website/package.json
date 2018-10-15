@@ -11,6 +11,7 @@
         "axios": "^0.18.0",
         "axios-mock-adapter": "^1.15.0",
         "crip-vue-loading": "^1.2.5",
+        "leaflet.icon.glyph": "^0.2.0",
         "pug-plain-loader": "^1.0.0",
         "stylus": "^0.54.5",
         "stylus-loader": "^3.0.2",

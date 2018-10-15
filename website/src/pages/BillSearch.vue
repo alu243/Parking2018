@@ -25,7 +25,7 @@ v-form(ref="form" v-model="valid" lazy-validation)
   v-card(v-show="bills.length > 0")
     v-container(fluid grid-list-lg)
       v-layout(row wrap)
-        v-flex(xs12 v-for="(item, i) in bills")
+        v-flex(xs12 v-for="(item, i) in bills" :key="item.BtNo")
             //- v-card(color="i % 2 == 0 ? blue-grey darken-' : cyan darken-0" class="white--text")
             v-card(:color="i % 2 == 0 ? 'blue-grey lighten-2' : 'cyan lighten-1'" class="white--text" :hover="true")
               v-card-text
