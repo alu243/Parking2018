@@ -1,7 +1,7 @@
 <template lang="pug">
 v-container(class="pa-0" fluid fill-height)
 	v-text-field(v-model="name" :rules="nameRules" label="車號" solo style="position:absolute;z-index:500;top:18px;left:50px" required append-icon="search" @click:append="searchmap")
-	l-map(ref="map" style="width: 100%;" :zoom="zoom" :center="center" :maxZoom="maxZoom")
+	l-map(ref="map" style="width: 100%;" :zoom="zoom" :center="center" :maxZoom="maxZoom" @zoomend="zoomed")
 		l-tile-layer(:url="url" :attribution="attribution" :options="options" :maxZoom="maxZoom" maxNativeZoom="18")
 		l-marker(:lat-lng="marker")
 			l-popup(:content="text")
@@ -24,7 +24,7 @@ export default {
 		return {
 			name: null,
 			nameRules: [],
-			zoom: 19,
+			zoom: 16,
 			maxZoom: 20,
 			options: { maxNativeZoom: 18, maxZoom: 20 },
 			center: L.latLng(22.627278, 120.301435), // eslint-disable-line no-undef
@@ -36,6 +36,9 @@ export default {
 		};
 	},
 	methods: {
+		zoomed() {
+			alert('zoomed');
+		},
 		searchmap() {
 			this.$http.get('/datas/park.json').then(
 				(response) => {
