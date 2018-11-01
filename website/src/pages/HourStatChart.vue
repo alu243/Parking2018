@@ -7,16 +7,16 @@ v-form(ref="form" v-model="valid" lazy-validation)
 			v-flex(xs3)
 				v-autocomplete(v-model="userId" :items="types" label="統計種類" prepend-icon="receipt")
 			v-flex(xs6)
-				v-btn( :disabled="!valid" @click="findBillDetails")
+				v-btn( :disabled="!valid")
 					v-icon search
 					| 查詢
-				v-btn( @click="clear")
+				v-btn
 					v-icon clear
 					| 清除
 			v-flex(xs12)
 				v-widget(title="時段營業額" content-bg="white")
 					div(slot="widget-content")
-						v-chart(:options="sample" style="height:428px;width:70%")
+						v-chart(:options="sample" style="height:428px;width:85%")
 </template>
 
 <script>

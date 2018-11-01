@@ -3,7 +3,7 @@ v-container(class="pa-0" fluid fill-height)
 	v-text-field(v-model="name" :rules="nameRules" label="車號" solo style="position:absolute;z-index:500;top:18px;left:50px" required append-icon="search" @click:append="searchmap")
 	l-map(ref="map" style="width: 100%;" :zoom="zoom" :center="center" :maxZoom="maxZoom" @zoomend="zoomed")
 		l-tile-layer(:url="url" :attribution="attribution" :options="options" :maxZoom="maxZoom" maxNativeZoom="18")
-		l-marker(:lat-lng="marker")
+		l-marker(:lat-lng="marker" v-if="marker")
 			l-popup(:content="text")
 		l-marker(v-for="(mk, i) in markers" :lat-lng="mk.latlng" :key="i" :icon="mk.icon")
 			l-popup(:content="mk.text")
@@ -24,22 +24,24 @@ export default {
 		return {
 			name: null,
 			nameRules: [],
-			zoom: 16,
+			zoom: 18,
 			maxZoom: 20,
 			options: { maxNativeZoom: 18, maxZoom: 20 },
 			center: L.latLng(22.627278, 120.301435), // eslint-disable-line no-undef
 			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-			marker: L.latLng(22.627278, 120.301435), // eslint-disable-line no-undef
+			marker: null,
 			text: 'this is a center marker',
 			markers: [],
 		};
 	},
 	methods: {
-		zoomed() {
-			alert('zoomed');
+		zoomed(event) {
+			console.log(event.target._zoom); // eslint-disble-line no-console
+			//alert(event.target._zoom);
 		},
 		searchmap() {
+			this.marker = L.latLng(22.627278, 120.301435); // eslint-disable-line no-undef
 			this.$http.get('/datas/park.json').then(
 				(response) => {
 					console.log('data is ', response.data); // eslint-disable-line no-console
