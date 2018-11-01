@@ -1,3 +1,6 @@
 website/node_modules/
 node_modules/
 website/dist/
+Parking2018Api/.vs/
+Parking2018Api/Parking2018Api/bin/
+Parking2018Api/Parking2018Api/obj/
