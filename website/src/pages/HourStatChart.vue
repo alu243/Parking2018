@@ -6,13 +6,14 @@ v-form(ref="form" v-model="valid" lazy-validation)
 				v-autocomplete(v-model="userId" :items="roads" label="開車路段" prepend-icon="directions")
 			v-flex(xs3)
 				v-autocomplete(v-model="userId" :items="types" label="統計種類" prepend-icon="receipt")
-			v-flex(xs6)
-				v-btn( :disabled="!valid")
+			v-flex(xs6 class="text-xs-right")
+				v-btn(:disabled="!valid" color="primary")
 					v-icon search
 					| 查詢
 				v-btn
 					v-icon clear
 					| 清除
+		v-layout(row)
 			v-flex(xs12)
 				v-widget(title="時段營業額" content-bg="white")
 					div(slot="widget-content")

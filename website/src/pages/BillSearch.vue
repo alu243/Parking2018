@@ -10,18 +10,18 @@ v-form(ref="form" v-model="valid" lazy-validation)
       v-flex(xs6 sm6 md3)
         div(class="layout")
           v-icon(style="margin-right:10px") event
-          v-datetime-picker(label="時間起值" v-model="condition.startDate" class="v-input__control")
+          v-datetime-picker(label="時間起值" v-model="condition.startDate" class="v-input__control" clearText="清除" okText="確定")
       v-flex(xs6 sm6 md3)
         div(class="layout")
           v-icon(style="margin-right:10px") event
-          v-datetime-picker(label="時間訖值" v-model="condition.endDate" class="v-input__control")
-      v-flex(xs6 sm6 md6)
-         v-btn(small :disabled="!valid" @click="findBillDetails")
-           v-icon search
-           | 查詢
-         v-btn(small @click="clear")
-           v-icon clear
-           | 清除
+          v-datetime-picker(label="時間訖值" v-model="condition.endDate" class="v-input__control" clearText="清除" okText="確定")
+    v-layout(row justify-end)
+      v-btn(:disabled="!valid" @click="findBillDetails" color="primary")
+        v-icon search
+        | 查詢
+      v-btn(@click="clear")
+        v-icon clear
+        | 清除
   v-card(v-show="bills.length > 0")
     v-container(fluid grid-list-lg)
       v-layout(row wrap)
